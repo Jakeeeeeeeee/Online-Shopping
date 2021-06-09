@@ -5,6 +5,7 @@ import { Route } from 'react-router-dom';
 import HatsPage from './Pages/HatsPage';
 import ShopPage from './Pages/ShopPage';
 import Header from './components/Header';
+import AuthPage from './Pages/AuthPage';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Route exact="true" path="/" component={HomePage} />
       <Route path="/hats" component={HatsPage} />
       <Route path="/shop" component={ShopPage} />
+      <Route path="/Auth" component={AuthPage} />
     </>
   );
 }
