@@ -4,8 +4,8 @@ import {ReactComponent as Logo } from '../../../assets/crown.svg';
 import './header.styles.scss';
 import { auth } from '../../../firebase/firebase.utils';
 import { connect } from 'react-redux';
-import CartIcon from '../CartIcon';
-import CartDropDown from '../CartDropdown';
+import CartIcon from './components/CartIcon';
+import CartDropDown from './components/CartDropdown';
 
 const Header = ({ currentUser, hidden }) => (
   <div className="header">
