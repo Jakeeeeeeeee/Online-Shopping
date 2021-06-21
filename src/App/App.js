@@ -51,7 +51,7 @@ class App extends React.Component {
           exact 
           path="/Auth" 
           render={() => 
-            this.props.currentUser.displayName ? (
+            this.props.currentUser ? (
               <Redirect to="/" />
             ) : (
               <AuthPage />
