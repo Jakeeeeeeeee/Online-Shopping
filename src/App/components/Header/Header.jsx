@@ -22,7 +22,6 @@ const Header = ({ currentUser, hidden }) => (
       <Link className="option" to="/shop" >
         CONTACT
       </Link>
-      {console.log(currentUser)}
       {
         currentUser ? (
           <div className="option" onClick={() => auth.signOut()}>SIGN OUT</div>
