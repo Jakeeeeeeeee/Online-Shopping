@@ -2,14 +2,55 @@ import React from 'react';
 import CollectionOverview from './components/CollectionOverview';
 import { Route } from 'react-router-dom';
 import CollectionPage from './components/CollectionPage/CollectionPage';
+import { firestore, convertCollectionsSnapshotToMap } from '../../../firebase/firebase.utils';
+import { updateCollections } from '../../../redux/shop/shopActions';
+import { connect } from 'react-redux';
+import WithSpinner from '../../components/withSpinner/withSpinner';
 
-const ShopPage = ({ match }) => {
-  return (
-    <div className="shop-page">
-      <Route exact path={`${match.path}`} component={CollectionOverview} />
-      <Route exact path={`${match.path}/:collectionId`} component={CollectionPage} />
-    </div>
-  )
+const CollectionsOverviewWithSpinner = WithSpinner(CollectionOverview);
+const CollectionPageWithSpinner = WithSpinner(CollectionPage);
+
+class ShopPage extends React.Component {
+  state = {
+    loading: true
+  };
+
+  unsubscribeFromSnapshot = null;
+
+  componentDidMount () {
+    const { updateCollections } = this.props;
+    const collectionRef = firestore.collection('collections');
+
+    this.unsubscribeFromSnapshot = collectionRef.onSnapshot(async (snapshot) => {
+      const collectionsMap = convertCollectionsSnapshotToMap(snapshot)
+      updateCollections(collectionsMap);
+      this.setState({ loading: false })
+    });
+  }
+  
+  render() {
+    const { match } = this.props;
+    const { loading } = this.state;
+
+    return (
+      <div className="shop-page">
+        <Route 
+          exact 
+          path={`${match.path}`} 
+          render={(props) => <CollectionsOverviewWithSpinner isLoading={loading} {...props} /> } 
+        />
+        <Route 
+          exact 
+          path={`${match.path}/:collectionId`} 
+          render={(props) => <CollectionPageWithSpinner isLoading={loading} {...props} /> } 
+        />
+      </div>
+    )
+  }
 };
 
-export default ShopPage;
+const mapDispatchToProps = (dispatch) => ({
+  updateCollections: collectionMap => dispatch(updateCollections(collectionMap))
+});
+
+export default connect(null, mapDispatchToProps)(ShopPage);
