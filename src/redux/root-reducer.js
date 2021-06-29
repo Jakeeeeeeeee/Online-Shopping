@@ -3,7 +3,7 @@ import userReducer from "./user/userReducer/userReducer";
 import cartReducer from "./cart/cartReducer/cartReducer";
 import { persistReducer } from "redux-persist";
 import storage from 'redux-persist/lib/storage';
-import directoryReducer from "./directoryReducer/directoryReducer";
+import directoryReducer from "./directory/directoryReducer";
 import shopReducer from "./shop/shopReducer";
 
 
