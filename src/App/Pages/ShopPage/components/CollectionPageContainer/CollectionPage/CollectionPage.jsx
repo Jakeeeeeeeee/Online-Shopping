@@ -1,8 +1,8 @@
 import React from 'react';
 import './collectionPage.styles.scss';
-import CollectionItems from '../CollectionOverview/PreviewCollection/CollectionItems';
+import CollectionItems from '../../CollectionOverviewContainer/CollectionOverview/PreviewCollection/CollectionItems';
 import { connect } from 'react-redux';
-import { selectCollection } from '../../../../../redux/shop/shopSelectors';
+import { selectCollection } from '../../../../../../redux/shop/shopSelectors';
 
 const CollectionPage = ({ collection }) => {
   const { title, items } = collection;
