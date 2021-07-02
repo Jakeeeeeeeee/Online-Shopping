@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './App.css';
 import HomePage from './Pages/HomePage';
 import { Route, Redirect } from 'react-router-dom';
@@ -14,13 +14,10 @@ import { selectCurrentUser } from '../redux/user/userSelectors';
 import CheckoutPage from './Pages/CheckoutPage';
 
 
-class App extends React.Component {
-  unsubscribeFromAuth = null;
+const App = ({ setCurrentUser }) => {
+  useEffect(() => {
 
-  componentDidMount() {
-    const { setCurrentUser } = this.props;
-
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
+    const unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
       if(userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
 
@@ -34,13 +31,12 @@ class App extends React.Component {
 
       setCurrentUser(userAuth);
     });
-  }
 
-  componentWillUnmount() {
-    this.unsubscribeFromAuth();
-  }
+    return () => {
+      unsubscribeFromAuth();
+    };
+  })
 
-  render() {
     return (
       <>
         <Header />
@@ -61,8 +57,7 @@ class App extends React.Component {
         />
       </>
     )
-  }
-}
+  };
 
 const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,
