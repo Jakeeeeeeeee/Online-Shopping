@@ -8,7 +8,7 @@ Frontend:
 - Redux: Persist, Reselect(Memoization), thunk,
 - Firebase: authentication, database
 - Stripe Payment
-- Deploying CICD To Heroku
+- Deploying CICD with Heroku
 - Styled components
 - HOC
 - hooks
