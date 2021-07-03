@@ -14,7 +14,7 @@ import { selectCurrentUser } from '../redux/user/userSelectors';
 import CheckoutPage from './Pages/CheckoutPage';
 
 
-const App = ({ setCurrentUser }) => {
+const App = ({ setCurrentUser, currentUser }) => {
   useEffect(() => {
 
     const unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
@@ -48,7 +48,7 @@ const App = ({ setCurrentUser }) => {
           exact 
           path="/Auth" 
           render={() => 
-            this.props.currentUser ? (
+            currentUser ? (
               <Redirect to="/" />
             ) : (
               <AuthPage />
