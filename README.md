@@ -6,7 +6,6 @@ Frontend:
 - Class Components
 - Router: Dynamic Router
 - Redux: Persist, Reselect(Memoization), thunk,
-- Firebase: authentication, database
 - Stripe Payment
 - Deploying CICD with Heroku
 - Styled components
@@ -18,3 +17,8 @@ Backend:
 
 - Nodejs 
 - express
+
+
+DB:
+
+- Firebase: authentication, data
