@@ -21,6 +21,8 @@ DB:
 
 - Firebase: authentication, data
 
-
+Third Parties:
 - Stripe Payment
+
+Devops:
 - Deploying CICD with Heroku
