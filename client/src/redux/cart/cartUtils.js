@@ -31,3 +31,20 @@ export const removeItemFromCart = (cartItems, cartItemsToRemove) => {
      ) : (cartItem)
   ));
 };
+
+export const clearItemFromCart = (cartItems, cartItemsToClear) => 
+  cartItems.filter(
+    (cartItem) => cartItem.id !== cartItemsToClear.id
+  );
+
+export const getCartItemsCount = (cartItems) => 
+  cartItems.reduce(
+    (accumalatedQuantity, cartItem) => accumalatedQuantity + cartItem.quantity,
+    0
+  );
+
+export const getCartItemsPrice = (cartItems) => 
+  cartItems.reduce((accumalatedQuantity, cartItem) => 
+    accumalatedQuantity + cartItem.quantity * cartItem.price,
+    0
+  );
