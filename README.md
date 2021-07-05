@@ -6,11 +6,9 @@ Frontend:
 - Class Components
 - Router: Dynamic Router
 - Redux: Persist, Reselect(Memoization), thunk,
-- Stripe Payment
-- Deploying CICD with Heroku
 - Styled components
 - HOC
-- hooks
+- hooks: custom hooks, useEffect, context api,
 
 
 Backend:
@@ -22,3 +20,7 @@ Backend:
 DB:
 
 - Firebase: authentication, data
+
+
+- Stripe Payment
+- Deploying CICD with Heroku
