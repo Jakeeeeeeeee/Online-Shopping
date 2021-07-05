@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import HomePage from './Pages/HomePage';
 import { Route, Redirect } from 'react-router-dom';
@@ -7,16 +7,14 @@ import ShopPage from './Pages/ShopPage';
 import Header from './components/Header';
 import AuthPage from './Pages/AuthPage';
 import { auth, createUserProfileDocument } from '../firebase/firebase.utils';
-import { connect } from 'react-redux';
-import { setCurrentUser } from '../redux/user/userActions/userActions';
-import { createStructuredSelector } from 'reselect';
-import { selectCurrentUser } from '../redux/user/userSelectors';
 import CheckoutPage from './Pages/CheckoutPage';
+import CurrentUserContext from '../context/CurrentUserContext/CurrentUserContext';
 
 
-const App = ({ setCurrentUser, currentUser }) => {
+const App = () => {
+  const [currentUser, setCurrentUser] = useState();
+
   useEffect(() => {
-
     const unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
       if(userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
@@ -35,11 +33,14 @@ const App = ({ setCurrentUser, currentUser }) => {
     return () => {
       unsubscribeFromAuth();
     };
-  })
+  },[])
 
     return (
       <>
-        <Header />
+        <CurrentUserContext.Provider value={currentUser} >
+          <Header />
+        </CurrentUserContext.Provider>
+        
         <Route exact="true" path="/" component={HomePage} />
         <Route path="/hats" component={HatsPage} />
         <Route path="/shop" component={ShopPage} />
@@ -59,12 +60,6 @@ const App = ({ setCurrentUser, currentUser }) => {
     )
   };
 
-const mapStateToProps = createStructuredSelector({
-  currentUser: selectCurrentUser,
-})
 
-const mapDispatchToProps = (dispatch) => ({
-  setCurrentUser: (user) => dispatch(setCurrentUser(user))
-});
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;
