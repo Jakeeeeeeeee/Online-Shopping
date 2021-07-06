@@ -3,9 +3,9 @@ import './collectionPage.styles.scss';
 import CollectionItems from '../../CollectionOverviewContainer/CollectionOverview/PreviewCollection/CollectionItems';
 import CollectionsContext from '../../../../../../context/CollectionsContext/CollectionsContext';
 
-const CollectionPage = ({ match }) => {
-  const collections = useContext(CollectionsContext);
-  const collection = collections[match.params.collectionId];
+const CollectionPage = ({ collection }) => {
+  // const collections = useContext(CollectionsContext);
+  // const collection = collections[match.params.collectionId];
 
   const { title, items } = collection;
   return (

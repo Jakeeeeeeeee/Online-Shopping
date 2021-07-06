@@ -3,8 +3,9 @@ import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchCollectionStartAsync } from '../../../redux/shop/shopActions';
 // import CollectionOverviewContainer from './components/CollectionOverviewContainer/CollectionOverviewContainer';
-import CollectionPageContainer from './components/CollectionPageContainer/CollectionPageContainer';
+// import CollectionPageContainer from './components/CollectionPageContainer/CollectionPageContainer';
 import { default as CollectionOverviewContainer } from './components/CollectionsOverviewGraphql/CollectionsOverviewGraphql';
+import { default as CollectionPageContainer } from './components/CollectionPageGraphql/CollectionPageGraphql';
 
 const ShopPage = ({ fetchCollectionStartAsync, match }) => {
   useEffect(() => {
