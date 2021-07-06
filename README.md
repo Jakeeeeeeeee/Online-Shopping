@@ -9,6 +9,7 @@ Frontend:
 - Styled components
 - HOC
 - hooks: custom hooks, useEffect, context api,
+- GraphQL: Apollo(Mutations)
 
 
 Backend:
