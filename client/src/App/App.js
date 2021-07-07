@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import './App.css';
 import HomePage from './Pages/HomePage';
 import { Route, Redirect } from 'react-router-dom';
 import HatsPage from './Pages/HatsPage';
@@ -9,7 +8,7 @@ import AuthPage from './Pages/AuthPage';
 import { auth, createUserProfileDocument } from '../firebase/firebase.utils';
 import CheckoutPage from './Pages/CheckoutPage';
 import CurrentUserContext from '../context/CurrentUserContext/CurrentUserContext';
-
+import { GlobalStyle } from '../globalStyles';
 
 const App = () => {
   const [currentUser, setCurrentUser] = useState();
@@ -37,6 +36,7 @@ const App = () => {
 
     return (
       <>
+        <GlobalStyle />
         <CurrentUserContext.Provider value={currentUser} >
           <Header />
         </CurrentUserContext.Provider>
