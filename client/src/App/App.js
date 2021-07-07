@@ -4,6 +4,7 @@ import Header from './components/Header';
 import { auth, createUserProfileDocument } from '../firebase/firebase.utils';
 import CurrentUserContext from '../context/CurrentUserContext/CurrentUserContext';
 import { GlobalStyle } from '../globalStyles';
+import Loading from './components/Loading/Loading';
 
 const HomePage = lazy(() => import ('./Pages/HomePage'));
 const HatsPage = lazy(() => import ('./Pages/HatsPage'));
@@ -41,7 +42,7 @@ const App = () => {
         <CurrentUserContext.Provider value={currentUser} >
           <Header />
         </CurrentUserContext.Provider>
-        <Suspense fallback={<div>123</div>}>
+        <Suspense fallback={<Loading />}>
           <Route exact="true" path="/" component={HomePage} />
           <Route path="/hats" component={HatsPage} />
           <Route path="/shop" component={ShopPage} />
