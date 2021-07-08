@@ -27,3 +27,7 @@ Third Parties:
 
 Devops:
 - Deploying CICD with Heroku
+
+Performance:
+- React.memo
+- React Lazy(suspense)
