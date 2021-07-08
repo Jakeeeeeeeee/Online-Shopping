@@ -1,15 +1,16 @@
-import React, { useEffect, useState } from 'react';
-import './App.css';
-import HomePage from './Pages/HomePage';
+import React, { useEffect, useState, lazy, Suspense  } from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import HatsPage from './Pages/HatsPage';
-import ShopPage from './Pages/ShopPage';
 import Header from './components/Header';
-import AuthPage from './Pages/AuthPage';
 import { auth, createUserProfileDocument } from '../firebase/firebase.utils';
-import CheckoutPage from './Pages/CheckoutPage';
 import CurrentUserContext from '../context/CurrentUserContext/CurrentUserContext';
+import { GlobalStyle } from '../globalStyles';
+import Loading from './components/Loading/Loading';
 
+const HomePage = lazy(() => import ('./Pages/HomePage'));
+const HatsPage = lazy(() => import ('./Pages/HatsPage'));
+const ShopPage = lazy(() => import ('./Pages/ShopPage'));
+const AuthPage = lazy(() => import ('./Pages/AuthPage'));
+const CheckoutPage = lazy(() => import ('./Pages/CheckoutPage'));
 
 const App = () => {
   const [currentUser, setCurrentUser] = useState();
@@ -37,25 +38,27 @@ const App = () => {
 
     return (
       <>
+        <GlobalStyle />
         <CurrentUserContext.Provider value={currentUser} >
           <Header />
         </CurrentUserContext.Provider>
-        
-        <Route exact="true" path="/" component={HomePage} />
-        <Route path="/hats" component={HatsPage} />
-        <Route path="/shop" component={ShopPage} />
-        <Route path="/checkout" component={CheckoutPage} />
-        <Route 
-          exact 
-          path="/Auth" 
-          render={() => 
-            currentUser ? (
-              <Redirect to="/" />
-            ) : (
-              <AuthPage />
-            )
-          } 
-        />
+        <Suspense fallback={<Loading />}>
+          <Route exact="true" path="/" component={HomePage} />
+          <Route path="/hats" component={HatsPage} />
+          <Route path="/shop" component={ShopPage} />
+          <Route path="/checkout" component={CheckoutPage} />
+          <Route 
+            exact 
+            path="/Auth" 
+            render={() => 
+              currentUser ? (
+                <Redirect to="/" />
+              ) : (
+                <AuthPage />
+              )
+            } 
+          />
+        </Suspense>
       </>
     )
   };
