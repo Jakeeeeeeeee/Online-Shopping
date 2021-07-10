@@ -1,5 +1,7 @@
 # Udemy-Shopping
 
+PWA Supported
+
 Frontend:
 
 - React
