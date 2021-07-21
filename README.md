@@ -5,6 +5,7 @@ PWA Supported
 Frontend:
 
 - React
+- Jsx
 - Class Components
 - Router: Dynamic Router
 - Redux: Persist, Reselect(Memoization), thunk,
