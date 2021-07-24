@@ -29,7 +29,7 @@ Third Parties:
 - Stripe Payment
 
 Devops:
-- Deploying CICD with Heroku
+- Deploying CICD with Heroku : https://crwn-live.herokuapp.com/
 
 Performance:
 - React.memo
